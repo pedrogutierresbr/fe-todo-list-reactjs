@@ -1,9 +1,9 @@
 import React from "react";
-import { ReactDOM } from "react-dom";
-import GerenciadorTarefas from "./GerenciadorTarefas";
+import ReactDOM from "react-dom";
+import GerenciadorTarefas from "./Gerenciador-tarefas";
 
 it("deve renderizar o projeto sem erros", () => {
     const div = document.createElement("div");
     ReactDOM.render(<GerenciadorTarefas />, div);
-    ReactDOM.unmountComponentArNode(div);
+    ReactDOM.unmountComponentAtNode(div);
 });

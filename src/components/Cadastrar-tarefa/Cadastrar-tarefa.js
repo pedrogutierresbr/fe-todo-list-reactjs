@@ -12,10 +12,10 @@ function CadastrarTarefa() {
         event.preventDefault();
         setFormValidado(true);
         if (event.currentTarget.checkValidity() === true) {
-            //obtém tarefa
+            //obtém tarefa (pego as que estao no localStorage como string, se existirem, converto para objeto)
             const tarefasDb = localStorage["tarefas"];
             const tarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
-            //persiste a tarefa
+            //persiste a tarefa (pego a tarefa nova adcionada no array tarefa, converto para string e salvo no LocalStorage)
             tarefas.push(new Tarefa(new Date().getTime(), tarefa, false));
             localStorage["tarefas"] = JSON.stringify(tarefas);
             setExibirModal(true);
@@ -46,6 +46,7 @@ function CadastrarTarefa() {
                             required
                             value={tarefa}
                             onChange={handleTxtTarefa}
+                            data-testid="txt-tarefa"
                         />
                         <Form.Control.Feedback type="invalid">
                             A tarefa deve conter ao menos 5 caracteres
@@ -53,7 +54,7 @@ function CadastrarTarefa() {
                     </Form.Group>
 
                     <Form.Group className="text-center">
-                        <Button variant="success" type="submit">
+                        <Button variant="success" type="submit" data-testid="btn-cadastrar">
                             Cadastrar
                         </Button>
                         <A href="/" className="btn btn-light ml-4">
@@ -62,7 +63,7 @@ function CadastrarTarefa() {
                     </Form.Group>
                 </Form>
 
-                <Modal show={exibirModal} onHide={handleFecharModal}>
+                <Modal show={exibirModal} onHide={handleFecharModal} data-testid="modal">
                     <Modal.Header closeButton>
                         <Modal.Title>Sucesso</Modal.Title>
                     </Modal.Header>

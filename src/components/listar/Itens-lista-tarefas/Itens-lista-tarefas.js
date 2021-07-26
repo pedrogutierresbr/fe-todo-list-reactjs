@@ -5,7 +5,8 @@ import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { A } from "hookrouter";
 
 //Components
-import ConcluirTarefa from "../concluir-tarefa/Concluir-tarefa";
+import ConcluirTarefa from "../Concluir-tarefa/Concluir-tarefa";
+import RemoverTarefa from "../Remover-tarefa/Remover-tarefa";
 
 function ItensListaTarefas(props) {
     return props.tarefas.map((tarefa) => (
@@ -28,6 +29,8 @@ function ItensListaTarefas(props) {
                 <A href={`/atualizar/${tarefa.id}`} className={tarefa.concluida ? "hidden" : "btn btn-warning btn-sm"}>
                     <FontAwesomeIcon icon={faEdit} />
                 </A>
+                &nbsp;
+                <RemoverTarefa tarefa={tarefa} recarregarTarefas={props.recarregarTarefas} />
             </td>
         </tr>
     ));

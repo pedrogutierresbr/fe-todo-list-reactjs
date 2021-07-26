@@ -35,23 +35,23 @@ function RemoverTarefa(props) {
             <Modal show={exibirModal} onHide={handleFecharModal} data-testid="modal">
                 <Modal.Header closeButton>
                     <Modal.Title>Remover tarefa</Modal.Title>
-
-                    <Modal.Body>
-                        Deseja realmente remover a seguinte tarefa?
-                        <br />
-                        <strong>{props.tarefa.nome}</strong>
-                    </Modal.Body>
-
-                    <Modal.Footer>
-                        <Button variant="primary" onclick={handleRemoverTarefa} data-testid="btn-remover">
-                            Sim
-                        </Button>
-
-                        <Button variant="light" onClick={handleFecharModal}>
-                            Não
-                        </Button>
-                    </Modal.Footer>
                 </Modal.Header>
+
+                <Modal.Body>
+                    Deseja realmente remover a seguinte tarefa?
+                    <br />
+                    <strong>{props.tarefa.nome}</strong>
+                </Modal.Body>
+
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleRemoverTarefa} data-testid="btn-remover">
+                        Sim
+                    </Button>
+
+                    <Button variant="light" onClick={handleFecharModal}>
+                        Não
+                    </Button>
+                </Modal.Footer>
             </Modal>
         </span>
     );

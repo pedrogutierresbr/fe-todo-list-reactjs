@@ -5,6 +5,23 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 function ListarTarefas() {
+    const [tarefas, setTarefas] = useState([]);
+    const [carregarTarefas, setCarregarTarefas] = useState(true);
+
+    useEffect(() => {
+        function obterTarefas() {
+            const tarefasDB = localStorage["tarefas"];
+            let listarTarefas = tarefasDB ? JSON.parse(tarefasDB) : [];
+            setTarefas(listarTarefas);
+            console.log(listarTarefas);
+        }
+
+        if (carregarTarefas) {
+            obterTarefas();
+            setCarregarTarefas(false);
+        }
+    }, [carregarTarefas]);
+
     return (
         <div className="text-center container mt-5">
             <h3>Tarefas a fazer</h3>

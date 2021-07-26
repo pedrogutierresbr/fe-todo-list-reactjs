@@ -6,7 +6,6 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 //Components
 import ItensListaTarefas from "../Itens-lista-tarefas/Itens-lista-tarefas";
-import ConcluirTarefa from "../concluir-tarefa/Concluir-tarefa";
 
 function ListarTarefas() {
     const [tarefas, setTarefas] = useState([]);

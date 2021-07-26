@@ -45,7 +45,7 @@ function ConcluirTarefa(props) {
                 <Modal.Body>
                     Deseja realmente concluir a seguinte tarefa?
                     <br />
-                    <strong>{props.tarefas.nome}</strong>
+                    <strong>{props.tarefa.nome}</strong>
                 </Modal.Body>
 
                 <Modal.Footer>
@@ -63,7 +63,7 @@ function ConcluirTarefa(props) {
 }
 
 ConcluirTarefa.propTypes = {
-    tarefas: PropTypes.object.isRequired,
+    tarefa: PropTypes.object.isRequired,
     recarregarTarefas: PropTypes.func.isRequired,
     className: PropTypes.string.isRequired,
 };

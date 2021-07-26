@@ -4,7 +4,7 @@ import { useRoutes } from "hookrouter";
 import "./Gerenciador-tarefas.css";
 
 //Components
-import ListarTarefas from "./components/Listar-tarefas/Listar-tarefa";
+import ListarTarefas from "./components/listar/Listar-tarefas/Listar-tarefas";
 import CadastrarTarefa from "./components/Cadastrar-tarefa/Cadastrar-tarefa";
 import AtualizarTarefa from "./components/Atualizar-tarefa/Atualizar-tarefa";
 

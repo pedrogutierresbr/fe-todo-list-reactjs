@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import CadastrarTarefa from "./Cadastrar-tarefa";
+import CadastrarTarefa from "../Cadastrar-tarefa/Cadastrar-tarefa";
 import { render, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 

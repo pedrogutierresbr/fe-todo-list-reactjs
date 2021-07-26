@@ -4,10 +4,14 @@ import { Table } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
+//Components
+import ItensListaTarefas from "../Itens-lista-tarefas/Itens-lista-tarefas";
+
 function ListarTarefas() {
     const [tarefas, setTarefas] = useState([]);
     const [carregarTarefas, setCarregarTarefas] = useState(true);
 
+    // Responsavel por carregar as tarefas na tela
     useEffect(() => {
         function obterTarefas() {
             const tarefasDB = localStorage["tarefas"];
@@ -38,7 +42,9 @@ function ListarTarefas() {
                     </tr>
                 </thead>
 
-                <tbody></tbody>
+                <tbody>
+                    <ItensListaTarefas tarefas={tarefas} recarregarTarefas={setCarregarTarefas} />
+                </tbody>
             </Table>
         </div>
     );

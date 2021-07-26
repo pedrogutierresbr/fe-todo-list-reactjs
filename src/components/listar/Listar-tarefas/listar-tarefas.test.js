@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import ListarTarefas from "./Listar-tarefa";
+import ListarTarefas from "./Listar-tarefas";
 
 describe("Teste do componente de listagem de tarefas", () => {
     it("deve renderizar o componente sem erros", () => {

@@ -57,7 +57,7 @@ function CadastrarTarefa() {
                         <Button variant="success" type="submit" data-testid="btn-cadastrar">
                             Cadastrar
                         </Button>
-                        <A href="/" className="btn btn-light ml-4">
+                        <A href="/" className="btn btn-light ml-2">
                             Voltar
                         </A>
                     </Form.Group>

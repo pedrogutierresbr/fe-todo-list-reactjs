@@ -15,12 +15,22 @@ function ListarTarefas() {
     const [carregarTarefas, setCarregarTarefas] = useState(true);
     const [totalItems, setTotalItems] = useState(0);
     const [paginaAtual, setPaginaAtual] = useState(1);
+    const [ordenarAsc, setOrdenarAsc] = useState(false);
+    const [ordenarDesc, setOrdenarDesc] = useState(false);
 
     // Responsavel por carregar as tarefas na tela
     useEffect(() => {
         function obterTarefas() {
+            //obter tarefas salvas
             const tarefasDB = localStorage["tarefas"];
             let listaTarefas = tarefasDB ? JSON.parse(tarefasDB) : [];
+            //ordenar
+            if (ordenarAsc) {
+                listaTarefas.sort((t1, t2) => (t1.nome.toLowerCase() > t2.nome.toLowerCase() ? 1 : -1));
+            } else if (ordenarDesc) {
+                listaTarefas.sort((t1, t2) => (t1.nome.toLowerCase() < t2.nome.toLowerCase() ? 1 : -1));
+            }
+            //paginas
             setTotalItems(listaTarefas.length);
             setTarefas(listaTarefas.splice((paginaAtual - 1) * ITEMS_POR_PAG, ITEMS_POR_PAG));
         }
@@ -29,10 +39,25 @@ function ListarTarefas() {
             obterTarefas();
             setCarregarTarefas(false);
         }
-    }, [carregarTarefas, paginaAtual]);
+    }, [carregarTarefas, paginaAtual, ordenarAsc, ordenarDesc]);
 
     function handleMudarPagina(pagina) {
         setPaginaAtual(pagina);
+        setCarregarTarefas(true);
+    }
+
+    function handleOrdenar(event) {
+        event.preventDefault();
+        if (!ordenarAsc && !ordenarDesc) {
+            setOrdenarAsc(true);
+            setOrdenarDesc(false);
+        } else if (ordenarAsc) {
+            setOrdenarAsc(false);
+            setOrdenarDesc(true);
+        } else {
+            setOrdenarAsc(false);
+            setOrdenarDesc(false);
+        }
         setCarregarTarefas(true);
     }
 
@@ -42,7 +67,12 @@ function ListarTarefas() {
             <Table className="mt-3" striped bordered hover responsive data-testid="table">
                 <thead>
                     <tr>
-                        <th>Tarefa</th>
+                        <th>
+                            <a href="/" onClick={handleOrdenar}>
+                                Tarefa
+                            </a>
+                        </th>
+
                         <th>
                             <A href="/cadastrar" className="btn btn-success btn-sm" data-testid="btn-nova-tarefa">
                                 <FontAwesomeIcon className="mr-2" icon={faPlus} />

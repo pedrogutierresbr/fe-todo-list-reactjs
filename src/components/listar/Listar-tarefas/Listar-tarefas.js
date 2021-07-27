@@ -7,6 +7,7 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 //Components
 import ItensListaTarefas from "../Itens-lista-tarefas/Itens-lista-tarefas";
 import Paginacao from "../Paginacao/Paginacao";
+import Ordenacao from "../Ordenacao/Ordenacao";
 
 function ListarTarefas() {
     const ITEMS_POR_PAG = 4;
@@ -69,7 +70,8 @@ function ListarTarefas() {
                     <tr>
                         <th>
                             <a href="/" onClick={handleOrdenar}>
-                                Tarefa
+                                Tarefa &nbsp;
+                                <Ordenacao ordenarAsc={ordenarAsc} ordenarDesc={ordenarDesc} />
                             </a>
                         </th>
 

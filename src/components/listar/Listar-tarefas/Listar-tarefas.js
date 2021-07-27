@@ -6,25 +6,35 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 //Components
 import ItensListaTarefas from "../Itens-lista-tarefas/Itens-lista-tarefas";
+import Paginacao from "../Paginacao/Paginacao";
 
 function ListarTarefas() {
+    const ITEMS_POR_PAG = 4;
+
     const [tarefas, setTarefas] = useState([]);
     const [carregarTarefas, setCarregarTarefas] = useState(true);
+    const [totalItems, setTotalItems] = useState(0);
+    const [paginaAtual, setPaginaAtual] = useState(1);
 
     // Responsavel por carregar as tarefas na tela
     useEffect(() => {
         function obterTarefas() {
             const tarefasDB = localStorage["tarefas"];
-            let listarTarefas = tarefasDB ? JSON.parse(tarefasDB) : [];
-            setTarefas(listarTarefas);
-            console.log(listarTarefas);
+            let listaTarefas = tarefasDB ? JSON.parse(tarefasDB) : [];
+            setTotalItems(listaTarefas.length);
+            setTarefas(listaTarefas.splice((paginaAtual - 1) * ITEMS_POR_PAG, ITEMS_POR_PAG));
         }
 
         if (carregarTarefas) {
             obterTarefas();
             setCarregarTarefas(false);
         }
-    }, [carregarTarefas]);
+    }, [carregarTarefas, paginaAtual]);
+
+    function handleMudarPagina(pagina) {
+        setPaginaAtual(pagina);
+        setCarregarTarefas(true);
+    }
 
     return (
         <div className="text-center container mt-5">
@@ -46,6 +56,12 @@ function ListarTarefas() {
                     <ItensListaTarefas tarefas={tarefas} recarregarTarefas={setCarregarTarefas} />
                 </tbody>
             </Table>
+            <Paginacao
+                totalItems={totalItems}
+                itemsPorPagina={ITEMS_POR_PAG}
+                paginaAtual={paginaAtual}
+                mudarPagina={handleMudarPagina}
+            />
         </div>
     );
 }

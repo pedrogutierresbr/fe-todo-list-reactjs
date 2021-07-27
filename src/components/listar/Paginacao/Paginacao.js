@@ -10,11 +10,13 @@ function Paginacao(props) {
     }
 
     function gerarItemAnterior() {
-        <Pagination.Prev
-            key="pagPrev"
-            onClick={() => props.mudarPagina(props.paginaAtual - 1)}
-            disabled={props.paginaAtual === 1}
-        />;
+        return (
+            <Pagination.Prev
+                key="pagPrev"
+                onClick={() => props.mudarPagina(props.paginaAtual - 1)}
+                disabled={props.paginaAtual === 1}
+            />
+        );
     }
 
     function gerarItemNumerico(pagina) {
@@ -30,11 +32,13 @@ function Paginacao(props) {
     }
 
     function gerarProximoItem(numPaginas) {
-        <Pagination.Next
-            key="pagNext"
-            onClick={() => props.mudarPagina(props.paginaAtual + 1)}
-            disabled={props.paginaAtual === numPaginas}
-        />;
+        return (
+            <Pagination.Next
+                key="pagNext"
+                onClick={() => props.mudarPagina(props.paginaAtual + 1)}
+                disabled={props.paginaAtual === numPaginas}
+            />
+        );
     }
 
     function gerarUltimoItem(numPaginas) {
@@ -57,7 +61,6 @@ function Paginacao(props) {
         }
         items.push(gerarProximoItem(numPaginas));
         items.push(gerarUltimoItem(numPaginas));
-
         return items;
     }
 

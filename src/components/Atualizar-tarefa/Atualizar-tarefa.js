@@ -1,20 +1,56 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { Button, Form, Jumbotron, Modal } from "react-bootstrap";
 import { navigate, A } from "hookrouter";
 
 function AtualizarTarefa(props) {
+    const [exibirModal, setExibirModal] = useState(false);
+    const [formValidado, setFormValidado] = useState(false);
+    const [tarefa, setTarefa] = useState("");
+    const [carregarTarefa, setCarregarTarefa] = useState(true);
+
+    useEffect(() => {
+        if (carregarTarefa) {
+            const tarefasDb = localStorage["tarefas"];
+            const tarefas = tarefasDb ? JSON.parse(tarefasDb) : [];
+            const tarefinha = tarefas.filter((t) => t.id === parseInt(props.id))[0];
+            setTarefa(tarefinha.nome);
+            setCarregarTarefa(false);
+        }
+    }, [carregarTarefa, props]);
+
     function voltar(event) {
         event.preventDefault();
         // navigate faz o redirecionamento direto via código para a URL declarada em ()
         navigate("/");
     }
 
+    function handleFecharModal() {
+        // navigate faz o redirecionamento direto via código para a URL declarada em ()
+        navigate("/");
+    }
+
+    function atualizar(event) {
+        event.preventDefault();
+        setFormValidado(true);
+        if (event.currentTarget.checkValidity() === true) {
+            // obter a tarefa selecionada para modificação
+
+            // persistir (salvar) a tarefa atualizada
+            // exibir modal
+            setExibirModal(true);
+        }
+    }
+
+    function handleTxtTarefa(event) {
+        setTarefa(event.target.value);
+    }
+
     return (
         <div className="mt-5">
             <h3 className="text-center">Atualizar</h3>
             <Jumbotron className="mt-5 container">
-                <Form>
+                <Form noValidate onSubmit={atualizar} validated={formValidado}>
                     <Form.Group>
                         <Form.Label>Tarefa</Form.Label>
                         <Form.Control
@@ -24,6 +60,8 @@ function AtualizarTarefa(props) {
                             maxLength="100"
                             required
                             data-testid="txt-tarefa"
+                            value={tarefa}
+                            onChange={handleTxtTarefa}
                         />
                         <Form.Control.Feedback type="invalid">
                             A tarefa deve conter ao menos 5 caracteres
@@ -40,15 +78,17 @@ function AtualizarTarefa(props) {
                     </Form.Group>
                 </Form>
 
-                <Modal show={false} data-testid="modal">
+                <Modal show={exibirModal} onHide={handleFecharModal} data-testid="modal">
                     <Modal.Header closeButton>
                         <Modal.Title>Sucesso</Modal.Title>
                     </Modal.Header>
 
-                    <Modal.Body>Tarefa adicionada com sucesso!</Modal.Body>
+                    <Modal.Body>Tarefa atualizada com sucesso!</Modal.Body>
 
                     <Modal.Footer>
-                        <Button variant="success">Continuar</Button>
+                        <Button variant="success" onClick={handleFecharModal}>
+                            Continuar
+                        </Button>
                     </Modal.Footer>
                 </Modal>
             </Jumbotron>

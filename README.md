@@ -6,7 +6,7 @@ Este é um sistema de gerenciamento de tarefas (Todo List), que permite ao usuá
 
 ## Demonstração
 
-![Demonstração](xx)
+![Demonstração](https://github.com/pedrogutierresbr/todo-list-reactjs/blob/main/public/assets/gif-desktop.gif?raw=true)
 
 ## Tecnologias usadas
 

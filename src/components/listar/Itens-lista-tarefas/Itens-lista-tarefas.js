@@ -19,7 +19,7 @@ function ItensListaTarefas(props) {
                 {tarefa.nome}
             </td>
 
-            <td className="text-center px-5 d-flex justify-content-around">
+            <td className="text-right px-5 d-flex justify-content-between">
                 <ConcluirTarefa
                     tarefa={tarefa}
                     recarregarTarefas={props.recarregarTarefas}

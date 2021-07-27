@@ -77,7 +77,7 @@ function AtualizarTarefa(props) {
                     </Form.Group>
 
                     <Form.Group className="text-center">
-                        <Button variant="success" type="submit" data-testid="btn-cadastrar">
+                        <Button variant="success" type="submit" data-testid="btn-atualizar">
                             Atualizar
                         </Button>
                         <A href="/" className="btn btn-light ml-2" onClick={voltar}>

@@ -43,9 +43,9 @@ Ter o servidor criado para essa aplicação em seu computar, e executá-lo antes
 
 2° - cd Blodot -> para acessar a pasta do projeto no terminal/cmd
 
-3° - npm install -> Para instalar as dependencias necessarias para o projeto
+3° - npm install -> Para instalar as dependências necessárias para o projeto
 
-4° - npm start -> Para iniciar o projeto (Para acessar via browser, digite no navegador: localhost:3000)
+4° - npm start -> Para iniciar o projeto (Acesso via browser, digite no navegador: localhost:3000)
 ```
 
 # Autor
